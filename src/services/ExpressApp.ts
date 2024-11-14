@@ -6,7 +6,7 @@ import dotenv from "dotenv";
 import { AuthPayload } from "../dto";
 dotenv.config();
 
-import { AdminRoute, VandorRoute } from "../routes";
+import { AdminRoute, VandorRoute, ShoppingRoute } from "../routes";
 
 declare module "express" {
   interface Request {
@@ -27,6 +27,7 @@ export default async (app: Application) => {
 
   app.use("/admin", AdminRoute);
   app.use("/vandor", VandorRoute);
+  app.use("/", ShoppingRoute);
 
   return app;
 };

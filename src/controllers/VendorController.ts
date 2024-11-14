@@ -187,7 +187,7 @@ export const AddFood = async (
       });
       vendor.foods.push(food);
       const result = await vendor.save();
-      return res.json(result);
+      return res.json(food);
     }
   }
   return res.json({ message: "Unable to Update vendor profile " });
