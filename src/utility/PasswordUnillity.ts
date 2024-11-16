@@ -15,9 +15,7 @@ export const GeneratePassword = async (password: string, salt: string) => {
 };
 
 export const ValidatePassword = async (
-  enteredPassword: string,
-  savedPassword: string
-) => {
+enteredPassword: string, savedPassword: string, salt: string) => {
   return await bcrypt.compare(enteredPassword, savedPassword);
 };
 
