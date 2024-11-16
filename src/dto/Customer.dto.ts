@@ -31,6 +31,12 @@ export class EditCustomerProfileInput {
   address: string;
 }
 
+export class OrderInputs {
+  _id: string;
+  unit: number;
+  // items: [];
+}
+
 export interface CustomerPayload {
   _id: string;
   email: string;

@@ -2,6 +2,7 @@ import express, { Request, Response, NextFunction } from "express";
 import {
   CreateCustomerInputs,
   EditCustomerProfileInput,
+  OrderInputs,
   UserLoginInputs,
 } from "../dto/Customer.dto";
 import { validate } from "class-validator";
@@ -14,6 +15,7 @@ import {
 } from "../utility";
 import { Customer } from "../models/Customer";
 import { GenerateOtp, onRequestOTP } from "../utility/notificationUtility";
+import { Food, Order } from "../models";
 
 export const CustomerSignUp = async (
   req: Request,
@@ -57,7 +59,7 @@ export const CustomerSignUp = async (
       verified: false,
       lat: 0,
       lng: 0,
-      //   orders: [],
+      orders: [],
     });
 
     await onRequestOTP(otp, phone);
@@ -234,4 +236,99 @@ export const EditCustomerProfile = async (
     }
   }
   return res.status(400).json({ msg: "Error while Updating Profile" });
+};
+
+export const CreateOrder = async (
+  req: Request,
+  res: Response
+): Promise<any> => {
+  try {
+    const customer = req.user;
+    const cart = <[OrderInputs]>req.body;
+
+    if (!customer) {
+      return res.status(400).json({ msg: "Customer not authenticated" });
+    }
+
+    const profile = await Customer.findById(customer._id);
+    if (!profile) {
+      return res.status(404).json({ msg: "Customer not found" });
+    }
+
+    const orderId = `${Math.floor(Math.random() * 89999) + 1000}`;
+
+    let cartItems = [];
+    let netAmount = 0;
+
+    const foods = await Food.find()
+      .where("_id")
+      .in(cart.map((item) => item._id))
+      .exec();
+    console.log("Foods:", foods);
+
+    foods.forEach((food) => {
+      cart.forEach(({ _id, unit }) => {
+        if (food._id.toString() === _id) {
+          netAmount += food.price * unit;
+          cartItems.push({ food, unit });
+        }
+      });
+    });
+
+    if (cartItems.length === 0) {
+      return res.status(400).json({ msg: "No valid items in cart" });
+    }
+
+    const currentOrder = await Order.create({
+      orderID: orderId,
+      items: cartItems,
+      totalAmount: netAmount,
+      paidThrough: "COD",
+      orderDate: new Date(),
+      orderStatus: "Waiting",
+    });
+
+    profile.orders.push(currentOrder);
+    await profile.save();
+
+    return res.status(200).json(currentOrder);
+  } catch (error) {
+    console.error("Error in CreateOrder:", error);
+    return res.status(500).json({ msg: "Error while creating order" });
+  }
+};
+
+export const GetOrders = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<any> => {
+  const customer = req.user;
+
+  if (customer) {
+    const profile = await Customer.findById(customer._id).populate("orders");
+    if (profile) {
+      return res.status(200).json(profile.orders);
+    }
+  }
+
+  return res.status(400).json({ msg: "Orders not found" });
+};
+
+export const GetOrderById = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<any> => {
+  const orderId = req.params.id;
+
+  if (orderId) {
+    const order = await Order.findById(orderId).populate("items.food");
+
+    if (order) {
+      return res.status(200).json(order);
+    }
+  }
+
+  return res.status(400).json({ msg: "Order not found" });
 };
