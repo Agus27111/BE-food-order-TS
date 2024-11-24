@@ -11,6 +11,9 @@ import {
   GetOrders,
   ProcessOrder,
   GetCurrentOrders,
+  AddOffer,
+  EditOffer,
+  GetOffers,
 } from "../controllers";
 import { Authenticate } from "../middlewares";
 import multer from "multer";
@@ -53,8 +56,15 @@ router.patch("/coverimage", Authenticate, images, UpdateVendorCoverImage);
 router.post("/food", Authenticate, images, AddFood);
 router.get("/food", Authenticate, GetFoods);
 
+//ORDERS
 router.get("/orders", Authenticate, GetCurrentOrders);
 router.put("/order/:id/process", Authenticate, ProcessOrder);
 router.get("/order/:id", Authenticate, GetOrderDetails);
+
+//OFFERS
+router.get('/offers',Authenticate, GetOffers);
+router.post('/offer',Authenticate, AddOffer);
+router.put('/offer/:id',Authenticate, EditOffer)
+
 
 export { router as VandorRoute };
