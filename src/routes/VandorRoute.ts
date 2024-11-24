@@ -7,6 +7,10 @@ import {
   UpdateVendorCoverImage,
   GetFoods,
   AddFood,
+  GetOrderDetails,
+  GetOrders,
+  ProcessOrder,
+  GetCurrentOrders,
 } from "../controllers";
 import { Authenticate } from "../middlewares";
 import multer from "multer";
@@ -48,5 +52,9 @@ router.patch("/coverimage", Authenticate, images, UpdateVendorCoverImage);
 
 router.post("/food", Authenticate, images, AddFood);
 router.get("/food", Authenticate, GetFoods);
+
+router.get("/orders", Authenticate, GetCurrentOrders);
+router.put("/order/:id/process", Authenticate, ProcessOrder);
+router.get("/order/:id", Authenticate, GetOrderDetails);
 
 export { router as VandorRoute };

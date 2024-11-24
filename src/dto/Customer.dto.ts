@@ -42,3 +42,8 @@ export interface CustomerPayload {
   email: string;
   verified: boolean;
 }
+
+export class CartItem {
+  _id: string;
+  unit: number;
+}

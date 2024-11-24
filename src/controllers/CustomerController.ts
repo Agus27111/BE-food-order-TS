@@ -1,5 +1,6 @@
 import express, { Request, Response, NextFunction } from "express";
 import {
+  CartItem,
   CreateCustomerInputs,
   EditCustomerProfileInput,
   OrderInputs,
@@ -16,6 +17,7 @@ import {
 import { Customer } from "../models/Customer";
 import { GenerateOtp, onRequestOTP } from "../utility/notificationUtility";
 import { Food, Order } from "../models";
+import mongoose from "mongoose";
 
 export const CustomerSignUp = async (
   req: Request,
@@ -110,7 +112,7 @@ export const CustomerLogin = async (
       });
 
       return res.status(200).json({
-        signature,
+        signature: signature,
         email: customer.email,
         verified: customer.verified,
       });
@@ -260,15 +262,17 @@ export const CreateOrder = async (
     let cartItems = [];
     let netAmount = 0;
 
+    let vendorId;
+
     const foods = await Food.find()
       .where("_id")
       .in(cart.map((item) => item._id))
       .exec();
-    console.log("Foods:", foods);
 
     foods.forEach((food) => {
       cart.forEach(({ _id, unit }) => {
         if (food._id.toString() === _id) {
+          vendorId = food.vendorId;
           netAmount += food.price * unit;
           cartItems.push({ food, unit });
         }
@@ -281,13 +285,20 @@ export const CreateOrder = async (
 
     const currentOrder = await Order.create({
       orderID: orderId,
+      vendorId: vendorId,
       items: cartItems,
       totalAmount: netAmount,
       paidThrough: "COD",
       orderDate: new Date(),
       orderStatus: "Waiting",
+      remarks: "",
+      deliveryId: "",
+      appliedOffer: false,
+      offerId: null,
+      readyTime: 45,
     });
 
+    profile.cart = [] as any;
     profile.orders.push(currentOrder);
     await profile.save();
 
@@ -331,4 +342,95 @@ export const GetOrderById = async (
   }
 
   return res.status(400).json({ msg: "Order not found" });
+};
+
+export const AddToCart = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<any> => {
+  const customer = req.user;
+
+  const customerId = customer._id;
+
+  const profile = await Customer.findById(customerId).populate("cart.food");
+
+  if (!profile) {
+    return res.status(404).json({ msg: "Customer not found" });
+  }
+
+  let cartItems = Array();
+  const { _id, unit } = <OrderInputs>req.body;
+
+  const food = await Food.findById(_id);
+  if (!food) {
+    return res.status(404).json({ msg: "food id is wrong!" });
+  }
+  cartItems = profile.cart;
+
+  if (cartItems.length > 0) {
+    //check and update
+    let existFoodItems = cartItems.filter(
+      (item) => item.food._id.toString() === _id
+    );
+    if (existFoodItems.length > 0) {
+      const index = cartItems.indexOf(existFoodItems[0]);
+      if (unit > 0) {
+        cartItems[index] = { food, unit };
+        console.log("Updated cart item:", cartItems[index]);
+      } else {
+        cartItems.splice(index, 1);
+        console.log("Removed cart item:", existFoodItems[0]);
+      }
+    } else {
+      //add new Item
+      cartItems.push({ food, unit });
+    }
+  } else {
+    // Add item if cart is empty
+    cartItems.push({ food, unit });
+  }
+  profile.cart = cartItems as any;
+  const cartResult = await profile.save();
+  return res.status(200).json(cartResult.cart);
+};
+
+export const GetCart = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<any> => {
+  const customer = req.user;
+
+  const customerId = customer._id;
+
+  const profile = await Customer.findById(customerId).populate("cart.food");
+
+  if (!profile) {
+    return res.status(404).json({ msg: "Customer not found" });
+  }
+  return res.status(200).json(profile.cart);
+};
+
+export const DeleteCart = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<any> => {
+  try {
+    const customer = req.user;
+
+    const customerId = customer._id;
+
+    const profile = await Customer.findById(customerId).populate("cart.food");
+
+    if (!profile) {
+      return res.status(404).json({ msg: "Customer not found" });
+    }
+    profile.cart = [] as any;
+    const cartResult = await profile.save();
+    return res.status(200).json(cartResult);
+  } catch (error) {
+    return res.status(404).json({ msg: "Cart is already empty!" });
+  }
 };

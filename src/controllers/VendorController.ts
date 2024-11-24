@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import { VandorLoginInput, EditVendorInput } from "../dto";
-import { Food } from "../models";
+import { Food, Order } from "../models";
 // import { Offer } from '../models/Offer';
 // import { Order } from '../models/Order';
 import { GenerateSignature, ValidatePassword } from "../utility";
@@ -208,4 +208,74 @@ export const GetFoods = async (
     }
   }
   return res.json({ message: "Foods not found!" });
+};
+
+export const GetOrderDetails = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<any> => {
+  const orderId = req.params.id;
+
+  if (orderId) {
+    const order = await Order.findById(orderId).populate("items.food");
+
+    if (order != null) {
+      return res.status(200).json(order);
+    }
+  }
+
+  return res.json({ message: "Order Not found" });
+};
+
+export const ProcessOrder = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<any> => {
+  const orderId = req.params.id;
+  if (!orderId) {
+    return res.status(404).json({ msg: "id did not march" });
+  }
+
+  const { status, remarks, time } = req.body; //ACCEPT // REJECT // UNDER-PROCESS // READY
+
+  if (orderId) {
+    const order = await Order.findById(orderId).populate("items.food");
+
+    order.orderStatus = status;
+    order.remarks = remarks;
+    if (time) {
+      order.readyTime = time;
+    }
+
+    const orderResult = await order.save();
+
+    if (orderResult != null) {
+      return res.status(200).json(orderResult);
+    }
+  }
+
+  return res.json({ message: "Unable to process order!" });
+};
+
+export const GetCurrentOrders = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<any> => {
+  try {
+    const user = req.user;
+
+    if (!user) {
+      return res.status(404).json({ msg: "user not found!" });
+    }
+    const orders = await Order.find({ vendorId: user._id }).populate(
+      "items.food"
+    );
+
+    return res.status(200).json(orders);
+  } catch (error) {
+    return res.status(400).json({ msg: "Order not found!" });
+  }
 };
