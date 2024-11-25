@@ -29,7 +29,7 @@ export interface EditVendorInput {
 
 export interface CreateOfferInputs {
   offerType: string;
-  vendors: [any];
+  vandors: [any];
   title: string;
   description: string;
   minValue: number;

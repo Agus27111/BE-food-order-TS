@@ -38,6 +38,7 @@ export const ValidateSignature = async (req: Request): Promise<any> => {
       req.user = payload;
       return true;
     } catch (err) {
+      console.error("Authentication error:", err);
       return false;
     }
   }

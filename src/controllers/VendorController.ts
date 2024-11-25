@@ -280,124 +280,145 @@ export const GetCurrentOrders = async (
   }
 };
 
-export const GetOffers = async (req: Request, res: Response, next: NextFunction): Promise<any> => {
-
-
+export const GetOffers = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<any> => {
+  try {
+    if (req.method === "GET" && req.body && Object.keys(req.body).length > 0) {
+      return res.status(400).json({ message: "Body not allowed for GET requests" });
+    }
     const user = req.user;
 
-    if(user){
-        let currentOffer = Array();
-
-        const offers = await Offer.find().populate('vendors');
-
-        if(offers){
-
-
-            offers.map(item => {
-
-                if(item.vendors){
-                    item.vendors.map(vendor => {
-                        if(vendor._id.toString() === user._id){
-                            currentOffer.push(item);
-                        }
-                    })
-                }
-
-                if(item.offerType === "GENERIC"){
-                    currentOffer.push(item)
-                }
-
-            })
-
-        }
-
-        return res.status(200).json(currentOffer);
-
+    if (!user) {
+      return res.status(401).json({ message: "Unauthorized access" });
     }
 
-    return res.json({ message: 'Offers Not available'});
-}
+    let currentOffer = Array();
 
+    const offers = await Offer.find().populate("vandors");
 
-export const AddOffer = async (req: Request, res: Response, next: NextFunction): Promise<any> => {
-
-
-    const user = req.user;
-
-    if(user){
-        const { title, description, offerType, offerAmount, pincode,
-        promocode, promoType, startValidity, endValidity, bank, bins, minValue, isActive } = <CreateOfferInputs>req.body;
-
-        const vendor = await FindVandor(user._id);
-
-        if(vendor){
-
-            const offer = await Offer.create({
-                title,
-                description,
-                offerType,
-                offerAmount,
-                pincode,
-                promoType,
-                startValidity,
-                endValidity,
-                bank,
-                isActive,
-                minValue,
-                vendor:[vendor]
-            })
-
-            return res.status(200).json(offer);
-
-        }
-
-    }
-
-    return res.json({ message: 'Unable to add Offer!'});
-
-    
-
-}
-
-export const EditOffer = async (req: Request, res: Response, next: NextFunction): Promise<any> => {
-
-
-    const user = req.user;
-    const offerId = req.params.id;
-
-    if(user){
-        const { title, description, offerType, offerAmount, pincode,
-        promocode, promoType, startValidity, endValidity, bank, bins, minValue, isActive } = <CreateOfferInputs>req.body;
-
-        const currentOffer = await Offer.findById(offerId);
-
-        if(currentOffer){
-
-            const vendor = await FindVandor(user._id);
-
-            if(vendor){
-           
-                currentOffer.title = title,
-                currentOffer.description = description,
-                currentOffer.offerType = offerType,
-                currentOffer.offerAmount = offerAmount,
-                currentOffer.pincode = pincode,
-                currentOffer.promoType = promoType,
-                currentOffer.startValidity = startValidity,
-                currentOffer.endValidity = endValidity,
-                currentOffer.bank = bank,
-                currentOffer.isActive = isActive,
-                currentOffer.minValue = minValue;
-
-                const result = await currentOffer.save();
-
-                return res.status(200).json(result);
+    if (Array.isArray(offers)) {
+      offers.forEach((item) => {
+        if (item.vandors) {
+          item.vandors.forEach((vandor) => {
+            if (vandor._id.toString() === user._id) {
+              currentOffer.push(item);
             }
-            
+          });
         }
-
+        if (item.offerType === "GENERIC") {
+          currentOffer.push(item);
+        }
+      });
     }
 
-    return res.json({ message: 'Unable to add Offer!'});    
+    return res.status(200).json(currentOffer);
+  } catch (error) {
+    console.error("Error in GetOffers:", error);
+    return res.status(500).json({ message: "Internal server error", error });
+  }
+};
 
-}
+export const AddOffer = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<any> => {
+  const user = req.user;
+
+  if (user) {
+    const {
+      title,
+      description,
+      offerType,
+      offerAmount,
+      pincode,
+      promocode,
+      promoType,
+      startValidity,
+      endValidity,
+      bank,
+      bins,
+      minValue,
+      isActive,
+    } = <CreateOfferInputs>req.body;
+
+    const vendor = await FindVandor(user._id);
+
+    if (vendor) {
+      const offer = await Offer.create({
+        title,
+        description,
+        offerType,
+        offerAmount,
+        pincode,
+        promoType,
+        startValidity,
+        endValidity,
+        bank,
+        isActive,
+        minValue,
+        vandors: [vendor],
+      });
+
+      return res.status(200).json(offer);
+    }
+  }
+
+  return res.json({ message: "Unable to add Offer!" });
+};
+
+export const EditOffer = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<any> => {
+  const user = req.user;
+  const offerId = req.params.id;
+
+  if (user) {
+    const {
+      title,
+      description,
+      offerType,
+      offerAmount,
+      pincode,
+      promocode,
+      promoType,
+      startValidity,
+      endValidity,
+      bank,
+      bins,
+      minValue,
+      isActive,
+    } = <CreateOfferInputs>req.body;
+
+    const currentOffer = await Offer.findById(offerId);
+
+    if (currentOffer) {
+      const vendor = await FindVandor(user._id);
+
+      if (vendor) {
+        (currentOffer.title = title),
+          (currentOffer.description = description),
+          (currentOffer.offerType = offerType),
+          (currentOffer.offerAmount = offerAmount),
+          (currentOffer.pincode = pincode),
+          (currentOffer.promoType = promoType),
+          (currentOffer.startValidity = startValidity),
+          (currentOffer.endValidity = endValidity),
+          (currentOffer.bank = bank),
+          (currentOffer.isActive = isActive),
+          (currentOffer.minValue = minValue);
+
+        const result = await currentOffer.save();
+
+        return res.status(200).json(result);
+      }
+    }
+  }
+
+  return res.json({ message: "Unable to edit Offer!" });
+};

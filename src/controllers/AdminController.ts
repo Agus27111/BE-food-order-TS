@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import { CreateVandorInput } from "../dto";
-import { Vandor } from "../models/VandorModel";
+import { Vandor } from "../models/Vandor";
 import { GenerateSalt, GeneratePassword } from "../utility";
 import mongoose from "mongoose";
 
@@ -96,7 +96,7 @@ export const GetVandorById = async (
   next: NextFunction
 ): Promise<any> => {
   try {
-    const { id } = req.params; 
+    const { id } = req.params;
 
     if (!mongoose.Types.ObjectId.isValid(id)) {
       return res.status(400).json({
@@ -112,5 +112,3 @@ export const GetVandorById = async (
     return res.status(500).json({ success: false, message: error });
   }
 };
-
-
