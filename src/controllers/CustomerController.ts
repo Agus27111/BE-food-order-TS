@@ -16,7 +16,7 @@ import {
 } from "../utility";
 import { Customer } from "../models/Customer";
 import { GenerateOtp, onRequestOTP } from "../utility/notificationUtility";
-import { Food, Order } from "../models";
+import { Food, Offer, Order, Transaction } from "../models";
 import mongoose from "mongoose";
 
 export const CustomerSignUp = async (
@@ -240,16 +240,72 @@ export const EditCustomerProfile = async (
   return res.status(400).json({ msg: "Error while Updating Profile" });
 };
 
+// Create Payment
+export const CreatePayment = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<any> => {
+  const customer = req.user;
+
+  const { amount, paymentMode, offerId } = req.body;
+
+  let payableAmount = Number(amount);
+
+  if (offerId) {
+    const appliedOffer = await Offer.findById(offerId);
+
+    if (appliedOffer.isActive) {
+      payableAmount = payableAmount - appliedOffer.offerAmount;
+    }
+  }
+  // perform payment gateway charge api
+
+  // create record on transaction
+  const transaction = await Transaction.create({
+    customer: customer._id,
+    vandorId: "",
+    orderId: "",
+    orderValue: payableAmount,
+    offerUsed: offerId || "NA",
+    status: "OPEN",
+    paymentMode: paymentMode,
+    paymentResponse: "Payment is cash on Delivery",
+  });
+
+  //return transaction
+  return res.status(200).json(transaction);
+};
+
+const validateTransaction = async (txnId: string) => {
+  const currentTransaction = await Transaction.findById(txnId);
+
+  if (currentTransaction) {
+    if (currentTransaction.status.toLowerCase() !== "failed") {
+      return { status: true, currentTransaction };
+    }
+  }
+  return { status: false, currentTransaction };
+};
+
+// Order Section
+
 export const CreateOrder = async (
   req: Request,
   res: Response
 ): Promise<any> => {
   try {
     const customer = req.user;
-    const cart = <[OrderInputs]>req.body;
+
+    const { txnId, amount, items } = <OrderInputs>req.body;
 
     if (!customer) {
       return res.status(400).json({ msg: "Customer not authenticated" });
+    }
+
+    const { status, currentTransaction } = await validateTransaction(txnId);
+    if (!status) {
+      return res.status(201).json({ msg: "Error with create Order!" });
     }
 
     const profile = await Customer.findById(customer._id);
@@ -260,17 +316,17 @@ export const CreateOrder = async (
     const orderId = `${Math.floor(Math.random() * 89999) + 1000}`;
 
     let cartItems = [];
-    let netAmount = 0;
+    let netAmount = 0.0;
 
     let vendorId;
 
     const foods = await Food.find()
       .where("_id")
-      .in(cart.map((item) => item._id))
+      .in(items.map((item) => item._id))
       .exec();
 
     foods.forEach((food) => {
-      cart.forEach(({ _id, unit }) => {
+      items.forEach(({ _id, unit }) => {
         if (food._id.toString() === _id) {
           vendorId = food.vendorId;
           netAmount += food.price * unit;
@@ -288,18 +344,23 @@ export const CreateOrder = async (
       vendorId: vendorId,
       items: cartItems,
       totalAmount: netAmount,
-      paidThrough: "COD",
+      paidAmount: amount,
       orderDate: new Date(),
       orderStatus: "Waiting",
       remarks: "",
       deliveryId: "",
-      appliedOffer: false,
-      offerId: null,
       readyTime: 45,
     });
 
     profile.cart = [] as any;
     profile.orders.push(currentOrder);
+
+    currentTransaction.vandorId = vendorId;
+    currentTransaction.orderId = orderId;
+    currentTransaction.status = "CONFIRMED";
+
+    await currentTransaction.save();
+
     await profile.save();
 
     return res.status(200).json(currentOrder);
@@ -360,7 +421,7 @@ export const AddToCart = async (
   }
 
   let cartItems = Array();
-  const { _id, unit } = <OrderInputs>req.body;
+  const { _id, unit } = <CartItem>req.body;
 
   const food = await Food.findById(_id);
   if (!food) {
@@ -432,5 +493,38 @@ export const DeleteCart = async (
     return res.status(200).json(cartResult);
   } catch (error) {
     return res.status(404).json({ msg: "Cart is already empty!" });
+  }
+};
+
+export const VerifyOffer = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<any> => {
+  try {
+    const offerId = req.params.id;
+    const customer = req.user;
+
+    if (!customer) {
+      return res.status(400).json({ msg: "youre not authenticate!" });
+    }
+
+    const appliedOffer = await Offer.findById(offerId);
+
+    if (!appliedOffer) {
+      return res.status(400).json({ msg: "The offer not found!" });
+    }
+
+    if (appliedOffer.promoType == "USER") {
+      //only applied once per user
+    }
+
+    if (!appliedOffer.isActive) {
+      return res.status(400).json({ msg: "the Offers is not active" });
+    }
+
+    return res.status(200).json({ msg: "Offer is Valid", offer: appliedOffer });
+  } catch (err) {
+    return res.status(500).json({ msg: err });
   }
 };

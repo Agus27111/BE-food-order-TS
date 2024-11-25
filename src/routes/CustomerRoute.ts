@@ -12,6 +12,8 @@ import {
   AddToCart,
   GetCart,
   DeleteCart,
+  VerifyOffer,
+  CreatePayment,
 } from "../controllers";
 import { Authenticate } from "../middlewares";
 // import { Offer } from '../models/Offer';
@@ -42,11 +44,11 @@ router.post("/cart", AddToCart);
 router.get("/cart", GetCart);
 router.delete("/cart", DeleteCart);
 
-// //Apply Offers
-// router.get('/offer/verify/:id', VerifyOffer);
+//Apply Offers
+router.get('/offer/verify/:id', VerifyOffer);
 
-// //Payment
-// router.post('/create-payment', CreatePayment);
+//Payment
+router.post('/create-payment', CreatePayment);
 
 //Order
 router.post("/create-order", CreateOrder);

@@ -3,6 +3,7 @@ import { CreateVandorInput } from "../dto";
 import { Vandor } from "../models/Vandor";
 import { GenerateSalt, GeneratePassword } from "../utility";
 import mongoose from "mongoose";
+import { Transaction } from "../models";
 
 export const FindVandor = async (id: string | undefined, email?: string) => {
   if (email) {
@@ -111,4 +112,34 @@ export const GetVandorById = async (
     console.log(error);
     return res.status(500).json({ success: false, message: error });
   }
+};
+
+export const GetTransactions = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<any> => {
+  const transactions = await Transaction.find();
+
+  if (transactions) {
+    return res.status(200).json(transactions);
+  }
+
+  return res.json({ message: "Transactions data not available" });
+};
+
+export const GetTransactionById = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<any> => {
+  const id = req.params.id;
+
+  const transaction = await Transaction.findById(id);
+
+  if (transaction) {
+    return res.status(200).json(transaction);
+  }
+
+  return res.json({ message: "Transaction data not available" });
 };

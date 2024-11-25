@@ -1,22 +1,21 @@
-import { IsEmail, IsNotEmpty, Length } from "class-validator";
+import { IsEmail, Length } from "class-validator";
 
 export class CreateCustomerInputs {
   @IsEmail()
   email: string;
 
-  @IsNotEmpty()
   @Length(7, 12)
   phone: string;
 
-  @IsNotEmpty()
-  @Length(7, 12)
+  @Length(6, 12)
   password: string;
 }
+
 export class UserLoginInputs {
   @IsEmail()
   email: string;
 
-  @Length(7, 12)
+  @Length(6, 12)
   password: string;
 }
 
@@ -31,12 +30,6 @@ export class EditCustomerProfileInput {
   address: string;
 }
 
-export class OrderInputs {
-  _id: string;
-  unit: number;
-  // items: [];
-}
-
 export interface CustomerPayload {
   _id: string;
   email: string;
@@ -46,4 +39,33 @@ export interface CustomerPayload {
 export class CartItem {
   _id: string;
   unit: number;
+}
+
+export class OrderInputs {
+  txnId: string;
+  amount: string;
+  items: [CartItem];
+}
+
+export class CreateDeliveryUserInput {
+  @IsEmail()
+  email: string;
+
+  @Length(7, 12)
+  phone: string;
+
+  @Length(6, 12)
+  password: string;
+
+  @Length(3, 12)
+  firstName: string;
+
+  @Length(3, 12)
+  lastName: string;
+
+  @Length(6, 24)
+  address: string;
+
+  @Length(4, 12)
+  pincode: string;
 }
