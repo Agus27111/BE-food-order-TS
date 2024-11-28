@@ -11,6 +11,7 @@ import {
   VandorRoute,
   ShoppingRoute,
   CustomerRoute,
+  DeliveryRoute,
 } from "../routes";
 
 declare module "express" {
@@ -34,6 +35,7 @@ export default async (app: Application) => {
   app.use("/vandor", VandorRoute);
   app.use("/", ShoppingRoute);
   app.use("/customer", CustomerRoute);
+  app.use("/delivery", DeliveryRoute);
 
   return app;
 };

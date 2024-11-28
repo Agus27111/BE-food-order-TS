@@ -16,7 +16,14 @@ import {
 } from "../utility";
 import { Customer } from "../models/Customer";
 import { GenerateOtp, onRequestOTP } from "../utility/notificationUtility";
-import { Food, Offer, Order, Transaction } from "../models";
+import {
+  DeliveryUser,
+  Food,
+  Offer,
+  Order,
+  Transaction,
+  Vandor,
+} from "../models";
 import mongoose from "mongoose";
 
 export const CustomerSignUp = async (
@@ -277,6 +284,39 @@ export const CreatePayment = async (
   return res.status(200).json(transaction);
 };
 
+// Delivery Notificcation
+
+const assignOrderForDelivery = async (orderId: string, vendorId: string) => {
+  // find the vendor
+  const vendor = await Vandor.findById(vendorId);
+  if (vendor) {
+    const areaCode = vendor.pincode;
+    const vendorLat = vendor.lat;
+    const vendorLng = vendor.lng;
+
+    //find the available Delivery person
+    const deliveryPerson = await DeliveryUser.find({
+      pincode: areaCode,
+      verified: true,
+      isAvailable: true,
+    });
+    if (deliveryPerson) {
+      // Check the nearest delivery person and assign the order
+
+      const currentOrder = await Order.findById(orderId);
+      if (currentOrder) {
+        //update Delivery ID
+        currentOrder.deliveryId = deliveryPerson[0]._id as string;
+        await currentOrder.save();
+
+        //Notify to vendor for received new order firebase push notification
+      }
+    }
+  }
+
+  // Update Delivery ID
+};
+
 const validateTransaction = async (txnId: string) => {
   const currentTransaction = await Transaction.findById(txnId);
 
@@ -360,6 +400,8 @@ export const CreateOrder = async (
     currentTransaction.status = "CONFIRMED";
 
     await currentTransaction.save();
+
+    assignOrderForDelivery(currentOrder._id as string, vendorId);
 
     await profile.save();
 

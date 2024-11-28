@@ -135,6 +135,7 @@ export const UpdateVandorService = async (
 ): Promise<any> => {
   try {
     const user = req.user;
+    const { lat, lng } = req.body;
 
     const existingVendor = await FindVandor(user._id);
 
@@ -143,7 +144,13 @@ export const UpdateVandorService = async (
         message: "user not authenticate",
       });
     }
+
     existingVendor.serviceAvailable = !existingVendor.serviceAvailable;
+    if (lat && lng) {
+      existingVendor.lat = lat;
+      existingVendor.lng = lng;
+    }
+
     const saveResult = await existingVendor.save();
 
     return res.status(200).json({
@@ -287,7 +294,9 @@ export const GetOffers = async (
 ): Promise<any> => {
   try {
     if (req.method === "GET" && req.body && Object.keys(req.body).length > 0) {
-      return res.status(400).json({ message: "Body not allowed for GET requests" });
+      return res
+        .status(400)
+        .json({ message: "Body not allowed for GET requests" });
     }
     const user = req.user;
 
