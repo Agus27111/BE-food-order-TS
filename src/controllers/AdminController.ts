@@ -3,7 +3,7 @@ import { CreateVandorInput } from "../dto";
 import { Vandor } from "../models/Vandor";
 import { GenerateSalt, GeneratePassword } from "../utility";
 import mongoose from "mongoose";
-import { Transaction } from "../models";
+import { Transaction, DeliveryUser } from "../models";
 
 export const FindVandor = async (id: string | undefined, email?: string) => {
   if (email) {
@@ -144,3 +144,34 @@ export const GetTransactionById = async (
 
   return res.json({ message: "Transaction data not available" });
 };
+
+export const VerifyDeliveryUser = async (req: Request, res: Response, next: NextFunction): Promise<any> => {
+
+  const { _id, status } = req.body;
+
+  if(_id){
+
+      const profile = await DeliveryUser.findById(_id);
+
+      if(profile){
+          profile.verified = status;
+          const result = await profile.save();
+
+          return res.status(200).json(result);
+      }
+  }
+
+  return res.json({ message: 'Unable to verify Delivery User'});
+}
+
+
+export const GetDeliveryUsers = async (req: Request, res: Response, next: NextFunction): Promise<any> => {
+
+  const deliveryUsers = await DeliveryUser.find();
+
+  if(deliveryUsers){
+      return res.status(200).json(deliveryUsers);
+  }
+  
+  return res.json({ message: 'Unable to get Delivery Users'});
+}

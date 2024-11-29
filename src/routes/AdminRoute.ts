@@ -1,10 +1,12 @@
 import express, { Request, Response, NextFunction } from "express";
 import {
   CreateVandor,
+  GetDeliveryUsers,
   GetTransactionById,
   GetTransactions,
   GetVandorById,
   GetVandors,
+  VerifyDeliveryUser,
 } from "../controllers";
 
 const router = express.Router();
@@ -21,5 +23,8 @@ router.get("/vandors", GetVandors);
 
 router.get("/transactions", GetTransactions);
 router.get("/transaction/:id", GetTransactionById);
+
+router.put("/delivery/verify", VerifyDeliveryUser);
+router.get("/delivery/users", GetDeliveryUsers);
 
 export { router as AdminRoute };

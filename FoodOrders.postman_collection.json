@@ -1,0 +1,2320 @@
+{
+	"info": {
+		"_postman_id": "f18b091e-9133-4c07-812e-61c3860b7153",
+		"name": "FoodOrders",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27969319"
+	},
+	"item": [
+		{
+			"name": "Admin",
+			"item": [
+				{
+					"name": "create Vandor",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Oemah Sambel\",\r\n  \"ownerName\": \"Agus Setiawan\",\r\n  \"foodType\": [\"Java\", \"Sundanise\", \"Indonesian\"],\r\n  \"pincode\": \"123456\",\r\n  \"address\": \"123 Food Street, Culinary City, FL 54321\",\r\n  \"password\": \"securepassword123\",\r\n  \"phone\": \"123-456-7890\",\r\n  \"email\": \"deliciousbites450@example.com\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3001/admin/create",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"admin",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get Vandor",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Delicious Bites\",\r\n  \"ownerName\": \"John Doe\",\r\n  \"foodType\": [\"Italian\", \"Mexican\", \"Indian\"],\r\n  \"pincode\": \"123456\",\r\n  \"address\": \"123 Food Street, Culinary City, FL 54321\",\r\n  \"password\": \"securepassword123\",\r\n  \"phone\": \"123-456-7890\",\r\n  \"email\": \"deliciousbites2@example.com\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3001/admin/vandors",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"admin",
+								"vandors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get VandorById",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Delicious Bites\",\r\n  \"ownerName\": \"John Doe\",\r\n  \"foodType\": [\"Italian\", \"Mexican\", \"Indian\"],\r\n  \"pincode\": \"123456\",\r\n  \"address\": \"123 Food Street, Culinary City, FL 54321\",\r\n  \"password\": \"securepassword123\",\r\n  \"phone\": \"123-456-7890\",\r\n  \"email\": \"deliciousbites2@example.com\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3001/admin/vandor/1",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"admin",
+								"vandor",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get Vandor service",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Delicious Bites\",\r\n  \"ownerName\": \"John Doe\",\r\n  \"foodType\": [\"Italian\", \"Mexican\", \"Indian\"],\r\n  \"pincode\": \"123456\",\r\n  \"address\": \"123 Food Street, Culinary City, FL 54321\",\r\n  \"password\": \"securepassword123\",\r\n  \"phone\": \"123-456-7890\",\r\n  \"email\": \"deliciousbites2@example.com\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3001/admin/vandors",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"admin",
+								"vandors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "view Order",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzI2NmJhYTE0Y2YzYjI5ZDA2NGU5NDQiLCJlbWFpbCI6ImRlbGljaW91c2JpdGVzMkBleGFtcGxlLmNvbSIsIm5hbWUiOiJEZWxpY2lvdXMgQml0ZXMiLCJpYXQiOjE3MzI0MzQ4NTQsImV4cCI6MTc0MDIxMDg1NH0.RRR1rdgsp7m0BHWlHpLSrEVaGklFAsb2lvsjQQwCRAU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3001/vandor/orders",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"vandor",
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update Order process",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzI2NmJhYTE0Y2YzYjI5ZDA2NGU5NDQiLCJlbWFpbCI6ImRlbGljaW91c2JpdGVzMkBleGFtcGxlLmNvbSIsIm5hbWUiOiJEZWxpY2lvdXMgQml0ZXMiLCJpYXQiOjE3MzI0MzQ4NTQsImV4cCI6MTc0MDIxMDg1NH0.RRR1rdgsp7m0BHWlHpLSrEVaGklFAsb2lvsjQQwCRAU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"status\": \"ACCEPT\",\r\n    \"remarks\": \"\",\r\n    \"time\": 30\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3001/vandor/order/6742d27b04cfa1e3b1427ba7/process",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"vandor",
+								"order",
+								"6742d27b04cfa1e3b1427ba7",
+								"process"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get order details",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzI2NmJhYTE0Y2YzYjI5ZDA2NGU5NDQiLCJlbWFpbCI6ImRlbGljaW91c2JpdGVzMkBleGFtcGxlLmNvbSIsIm5hbWUiOiJEZWxpY2lvdXMgQml0ZXMiLCJpYXQiOjE3MzI0MzQ4NTQsImV4cCI6MTc0MDIxMDg1NH0.RRR1rdgsp7m0BHWlHpLSrEVaGklFAsb2lvsjQQwCRAU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"status\": \"ACCEPT\",\r\n    \"remarks\": \"\",\r\n    \"time\": 30\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3001/vandor/order/6742d27b04cfa1e3b1427ba7",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"vandor",
+								"order",
+								"6742d27b04cfa1e3b1427ba7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get transaction",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzI2NmJhYTE0Y2YzYjI5ZDA2NGU5NDQiLCJlbWFpbCI6ImRlbGljaW91c2JpdGVzMkBleGFtcGxlLmNvbSIsIm5hbWUiOiJEZWxpY2lvdXMgQml0ZXMiLCJpYXQiOjE3MzI0MzQ4NTQsImV4cCI6MTc0MDIxMDg1NH0.RRR1rdgsp7m0BHWlHpLSrEVaGklFAsb2lvsjQQwCRAU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"status\": \"ACCEPT\",\r\n    \"remarks\": \"\",\r\n    \"time\": 30\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3001/admin/transactions",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"admin",
+								"transactions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get transaction by Id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzI2NmJhYTE0Y2YzYjI5ZDA2NGU5NDQiLCJlbWFpbCI6ImRlbGljaW91c2JpdGVzMkBleGFtcGxlLmNvbSIsIm5hbWUiOiJEZWxpY2lvdXMgQml0ZXMiLCJpYXQiOjE3MzI0MzQ4NTQsImV4cCI6MTc0MDIxMDg1NH0.RRR1rdgsp7m0BHWlHpLSrEVaGklFAsb2lvsjQQwCRAU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"status\": \"ACCEPT\",\r\n    \"remarks\": \"\",\r\n    \"time\": 30\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3001/admin/transaction/67449b00912582642a44bac6",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"admin",
+								"transaction",
+								"67449b00912582642a44bac6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "admin - getDeliveryUsers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3001/admin/delivery/users",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"admin",
+								"delivery",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "admin - verify DeliveryUsers",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"_id\": \"6749d313d61e4a3c9ea6540a\",\r\n    \"status\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3001/admin/delivery/verify",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"admin",
+								"delivery",
+								"verify"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Foods",
+			"item": [
+				{
+					"name": "createFood",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzI2NmJhYTE0Y2YzYjI5ZDA2NGU5NDQiLCJlbWFpbCI6ImRlbGljaW91c2JpdGVzMkBleGFtcGxlLmNvbSIsIm5hbWUiOiJEZWxpY2lvdXMgQml0ZXMiLCJpYXQiOjE3MzEzMzYyNjEsImV4cCI6MTczOTExMjI2MX0.ZelCAz-GkWfFJJWT1f2CjRnlegXX46Hq96QfPYyMsl8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Kue Putu 2",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "kue manis dari tepung beras",
+									"type": "text"
+								},
+								{
+									"key": "category",
+									"value": "kue",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "500",
+									"type": "text"
+								},
+								{
+									"key": "rating",
+									"value": "4",
+									"type": "text"
+								},
+								{
+									"key": "readyTime",
+									"value": "15",
+									"type": "text"
+								},
+								{
+									"key": "foodType",
+									"value": "Jajanan Murah",
+									"type": "text"
+								},
+								{
+									"key": "images",
+									"type": "file",
+									"src": [
+										"/C:/Users/agusdev/Downloads/mewarnai gambar naruto.jpg",
+										"/C:/Users/agusdev/Downloads/ray-so-export.png"
+									]
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3001/vandor/food",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"vandor",
+								"food"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get Foods",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzI2NmJhYTE0Y2YzYjI5ZDA2NGU5NDQiLCJlbWFpbCI6ImRlbGljaW91c2JpdGVzMkBleGFtcGxlLmNvbSIsIm5hbWUiOiJEZWxpY2lvdXMgQml0ZXMiLCJpYXQiOjE3MzEzMzYyNjEsImV4cCI6MTczOTExMjI2MX0.ZelCAz-GkWfFJJWT1f2CjRnlegXX46Hq96QfPYyMsl8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"name\": \"Martabak\",\r\n        \"description\": \"Kue lembut yang manis\",\r\n        \"category\": \"Kue\",\r\n        \"price\": \"20000\",\r\n        \"rating\": 0,\r\n        \"readyTime\": 1,\r\n        \"foodType\": \"jajanan\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3001/vandor/food",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"vandor",
+								"food"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get Foods Copy",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzI2NmJhYTE0Y2YzYjI5ZDA2NGU5NDQiLCJlbWFpbCI6ImRlbGljaW91c2JpdGVzMkBleGFtcGxlLmNvbSIsIm5hbWUiOiJEZWxpY2lvdXMgQml0ZXMiLCJpYXQiOjE3MzEzMzYyNjEsImV4cCI6MTczOTExMjI2MX0.ZelCAz-GkWfFJJWT1f2CjRnlegXX46Hq96QfPYyMsl8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"name\": \"Martabak\",\r\n        \"description\": \"Kue lembut yang manis\",\r\n        \"category\": \"Kue\",\r\n        \"price\": \"20000\",\r\n        \"rating\": 0,\r\n        \"readyTime\": 1,\r\n        \"foodType\": \"jajanan\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3001/vandor/food",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"vandor",
+								"food"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "User - Signup",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"gogoi@gogoi.com\",\n\t\"password\": \"123456\",\n    \"phone\": \"8989898989\"\n\t\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3001/vandor/create",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"vandor",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User - Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"deliciousbites2@example.com\",\n\t\"password\": \"securepassword123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3001/vandor/login",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"vandor",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Vendor update service",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Shopping",
+			"item": [
+				{
+					"name": "get Food",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3001/123456",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"123456"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "top restaurant",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3001/top-restaurant/123456",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"top-restaurant",
+								"123456"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "30 minute",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3001/foods-in-30-min/123456",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"foods-in-30-min",
+								"123456"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "search",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3001/search/123456",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"search",
+								"123456"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "restorant by Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3001/top-restaurant/123456",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"top-restaurant",
+								"123456"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "offer",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3001/offers/560001",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"offers",
+								"560001"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Customer",
+			"item": [
+				{
+					"name": "SignUp",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"coba@coba.com\",\r\n    \"password\": \"rahasia123\",\r\n    \"phone\": \"87822368008\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3001/customer/signup",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"customer",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Sign In",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"coba@coba.com\",\r\n    \"password\": \"rahasia123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3001/customer/login",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"customer",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Verify",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzM4YjFhOGI3Zjc5MWMyMzFhZWNjODciLCJlbWFpbCI6ImNvYmFAY29iYS5jb20iLCJ2ZXJpZmllZCI6ZmFsc2UsImlhdCI6MTczMTc2ODc1NSwiZXhwIjoxNzM5NTQ0NzU1fQ.6DZyYW-7KPUWRV51ZkAPn8hQD9U6Gzpam7xmW-0MF3M",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"otp\": \"345694\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3001/customer/verify",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"customer",
+								"verify"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "otp",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzM4YjFhOGI3Zjc5MWMyMzFhZWNjODciLCJlbWFpbCI6ImNvYmFAY29iYS5jb20iLCJ2ZXJpZmllZCI6ZmFsc2UsImlhdCI6MTczMTc2ODc1NSwiZXhwIjoxNzM5NTQ0NzU1fQ.6DZyYW-7KPUWRV51ZkAPn8hQD9U6Gzpam7xmW-0MF3M",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3001/customer/otp",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"customer",
+								"otp"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "profile",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzM4YjFhOGI3Zjc5MWMyMzFhZWNjODciLCJlbWFpbCI6ImNvYmFAY29iYS5jb20iLCJ2ZXJpZmllZCI6ZmFsc2UsImlhdCI6MTczMTc2ODc1NSwiZXhwIjoxNzM5NTQ0NzU1fQ.6DZyYW-7KPUWRV51ZkAPn8hQD9U6Gzpam7xmW-0MF3M",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3001/customer/profile",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"customer",
+								"profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "applied Offer",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzM4YjFhOGI3Zjc5MWMyMzFhZWNjODciLCJlbWFpbCI6ImNvYmFAY29iYS5jb20iLCJ2ZXJpZmllZCI6ZmFsc2UsImlhdCI6MTczMTc2ODc1NSwiZXhwIjoxNzM5NTQ0NzU1fQ.6DZyYW-7KPUWRV51ZkAPn8hQD9U6Gzpam7xmW-0MF3M",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3001/customer/offer/verify/67433d4476d2c4efea569fc9",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"customer",
+								"offer",
+								"verify",
+								"67433d4476d2c4efea569fc9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create-payment",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzM4YjFhOGI3Zjc5MWMyMzFhZWNjODciLCJlbWFpbCI6ImNvYmFAY29iYS5jb20iLCJ2ZXJpZmllZCI6ZmFsc2UsImlhdCI6MTczMTc2ODc1NSwiZXhwIjoxNzM5NTQ0NzU1fQ.6DZyYW-7KPUWRV51ZkAPn8hQD9U6Gzpam7xmW-0MF3M",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"amount\": 700,\r\n    \"paymentMode\": \"COD\",\r\n    \"offerId\": \"67433d4476d2c4efea569fc9\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3001/customer/create-payment",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"customer",
+								"create-payment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create-order",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzM4YjFhOGI3Zjc5MWMyMzFhZWNjODciLCJlbWFpbCI6ImNvYmFAY29iYS5jb20iLCJ2ZXJpZmllZCI6ZmFsc2UsImlhdCI6MTczMTc2ODc1NSwiZXhwIjoxNzM5NTQ0NzU1fQ.6DZyYW-7KPUWRV51ZkAPn8hQD9U6Gzpam7xmW-0MF3M",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"amount\": 700,\r\n    \"paymentMode\": \"COD\",\r\n    \"offerId\": \"67433d4476d2c4efea569fc9\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3001/customer/create-payment",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"customer",
+								"create-payment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "profile update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzM4YjFhOGI3Zjc5MWMyMzFhZWNjODciLCJlbWFpbCI6ImNvYmFAY29iYS5jb20iLCJ2ZXJpZmllZCI6ZmFsc2UsImlhdCI6MTczMTc2ODc1NSwiZXhwIjoxNzM5NTQ0NzU1fQ.6DZyYW-7KPUWRV51ZkAPn8hQD9U6Gzpam7xmW-0MF3M",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"Agus\",\r\n    \"lastName\": \"Setiawan\",\r\n    \"address\": \"Indramayu\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3001/customer/profile",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"customer",
+								"profile"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Orders",
+			"item": [
+				{
+					"name": "User - Add New Order",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzM4YjFhOGI3Zjc5MWMyMzFhZWNjODciLCJlbWFpbCI6ImNvYmFAY29iYS5jb20iLCJ2ZXJpZmllZCI6ZmFsc2UsImlhdCI6MTczMTc2ODc1NSwiZXhwIjoxNzM5NTQ0NzU1fQ.6DZyYW-7KPUWRV51ZkAPn8hQD9U6Gzpam7xmW-0MF3M",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"txnId\": \"67433d4476d2c4efea569fc9\",\r\n    \"amount\": 600,\r\n    \"items\": [\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/customer/create-order",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"customer",
+								"create-order"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User - View Order Details",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzM4YjFhOGI3Zjc5MWMyMzFhZWNjODciLCJlbWFpbCI6ImNvYmFAY29iYS5jb20iLCJ2ZXJpZmllZCI6ZmFsc2UsImlhdCI6MTczMTc2ODc1NSwiZXhwIjoxNzM5NTQ0NzU1fQ.6DZyYW-7KPUWRV51ZkAPn8hQD9U6Gzpam7xmW-0MF3M",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3001/customer/order/6738caa0c6397a75fd306f6f",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"customer",
+								"order",
+								"6738caa0c6397a75fd306f6f"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User - View Orders",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzM4YjFhOGI3Zjc5MWMyMzFhZWNjODciLCJlbWFpbCI6ImNvYmFAY29iYS5jb20iLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNzMyNDIwODQyLCJleHAiOjE3NDAxOTY4NDJ9.dkZw_00HNHMp_lmdNLUWaY4NAO5vdVdPJuGn0g4Ng8I",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3001/customer/orders",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"customer",
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get Current Orders",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzM4YjFhOGI3Zjc5MWMyMzFhZWNjODciLCJlbWFpbCI6ImNvYmFAY29iYS5jb20iLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNzMyNDIwODQyLCJleHAiOjE3NDAxOTY4NDJ9.dkZw_00HNHMp_lmdNLUWaY4NAO5vdVdPJuGn0g4Ng8I",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3001/vandor/orders",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"vandor",
+								"orders"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Cart",
+			"item": [
+				{
+					"name": "Add cart",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzM4YjFhOGI3Zjc5MWMyMzFhZWNjODciLCJlbWFpbCI6ImNvYmFAY29iYS5jb20iLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNzMyNDIwODQyLCJleHAiOjE3NDAxOTY4NDJ9.dkZw_00HNHMp_lmdNLUWaY4NAO5vdVdPJuGn0g4Ng8I",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"_id\": \"6732187a65e31a55ecb4ed50\",\r\n    \"unit\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3001/customer/cart",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"customer",
+								"cart"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get cart",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzM4YjFhOGI3Zjc5MWMyMzFhZWNjODciLCJlbWFpbCI6ImNvYmFAY29iYS5jb20iLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNzMyNDIwODQyLCJleHAiOjE3NDAxOTY4NDJ9.dkZw_00HNHMp_lmdNLUWaY4NAO5vdVdPJuGn0g4Ng8I",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3001/customer/cart",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"customer",
+								"cart"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete cart",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzM4YjFhOGI3Zjc5MWMyMzFhZWNjODciLCJlbWFpbCI6ImNvYmFAY29iYS5jb20iLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNzMyNDIwODQyLCJleHAiOjE3NDAxOTY4NDJ9.dkZw_00HNHMp_lmdNLUWaY4NAO5vdVdPJuGn0g4Ng8I",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:3001/customer/cart",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"customer",
+								"cart"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Offer",
+			"item": [
+				{
+					"name": "Add Offer",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzI2NmJhYTE0Y2YzYjI5ZDA2NGU5NDQiLCJlbWFpbCI6ImRlbGljaW91c2JpdGVzMkBleGFtcGxlLmNvbSIsIm5hbWUiOiJEZWxpY2lvdXMgQml0ZXMiLCJpYXQiOjE3MzI0MzQ4NTQsImV4cCI6MTc0MDIxMDg1NH0.RRR1rdgsp7m0BHWlHpLSrEVaGklFAsb2lvsjQQwCRAU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"offerType\": \"Discount\",\r\n  \"vandors\": [\"67266baa14cf3b29d064e944\", \"67429534e79fca6403190f56\"],\r\n  \"title\": \"Mega Sale Offer\",\r\n  \"description\": \"Get amazing discounts on selected products.\",\r\n  \"minValue\": 500,\r\n  \"offerAmount\": 100,\r\n  \"startValidity\": \"2024-11-01T00:00:00Z\",\r\n  \"endValidity\": \"2024-12-31T23:59:59Z\",\r\n  \"promocode\": \"MEGA100\",\r\n  \"promoType\": \"Flat Discount\",\r\n  \"bank\": [\"HDFC\", \"ICICI\", \"SBI\"],\r\n  \"bins\": [\"123456\", \"654321\", \"987654\"],\r\n  \"pincode\": \"560001\",\r\n  \"isActive\": true\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3001/vandor/offer",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"vandor",
+								"offer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getOffer",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzI2NmJhYTE0Y2YzYjI5ZDA2NGU5NDQiLCJlbWFpbCI6ImRlbGljaW91c2JpdGVzMkBleGFtcGxlLmNvbSIsIm5hbWUiOiJEZWxpY2lvdXMgQml0ZXMiLCJpYXQiOjE3MzI1NDM2NjksImV4cCI6MTc0MDMxOTY2OX0.8vEP28BwOKhOQuu2Nzrhm6vCiSKxPxr-WQxlbixjLaI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3001/vandor/offers",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"vandor",
+								"offers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "edit Offer",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzI2NmJhYTE0Y2YzYjI5ZDA2NGU5NDQiLCJlbWFpbCI6ImRlbGljaW91c2JpdGVzMkBleGFtcGxlLmNvbSIsIm5hbWUiOiJEZWxpY2lvdXMgQml0ZXMiLCJpYXQiOjE3MzI1NDM2NjksImV4cCI6MTc0MDMxOTY2OX0.8vEP28BwOKhOQuu2Nzrhm6vCiSKxPxr-WQxlbixjLaI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"offerType\": \"Discount 12.12\",\r\n  \"vandors\": [\"67266baa14cf3b29d064e944\", \"67429534e79fca6403190f56\"],\r\n  \"title\": \"Mega Sale End Year!\",\r\n  \"description\": \"Get amazing discounts on selected products.\",\r\n  \"minValue\": 500,\r\n  \"offerAmount\": 100,\r\n  \"startValidity\": \"2024-11-01T00:00:00Z\",\r\n  \"endValidity\": \"2024-12-31T23:59:59Z\",\r\n  \"promocode\": \"MEGA100\",\r\n  \"promoType\": \"Flat Discount\",\r\n  \"bank\": [\"Mandiri\", \"BRI\", \"BCA\"],\r\n  \"bins\": [\"123456\", \"654321\", \"987654\"],\r\n  \"pincode\": \"560001\",\r\n  \"isActive\": true\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3001/vandor/offer/67433d4476d2c4efea569fc9",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"vandor",
+								"offer",
+								"67433d4476d2c4efea569fc9"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Delivery",
+			"item": [
+				{
+					"name": "signup delivery",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"agust@test.com\",\r\n    \"password\": \"123456\",\r\n    \"phone\": \"1234567\",\r\n    \"firstName\": \"Agus\",\r\n    \"lastName\": \"Setiawan\",\r\n    \"address\": \"Indonesia\",\r\n    \"pincode\": \"400050\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3001/delivery/signup",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"delivery",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login delivery",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"agust@test.com\",\r\n    \"password\": \"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3001/delivery/login",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"delivery",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "edit delivery Copy",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzQ5ZDMxM2Q2MWU0YTNjOWVhNjU0MGEiLCJlbWFpbCI6ImFndXN0QHRlc3QuY29tIiwidmVyaWZpZWQiOmZhbHNlLCJpYXQiOjE3MzI4OTE0MTEsImV4cCI6MTc0MDY2NzQxMX0._jgfr7u9JOKDuA4Z9Zf6YkLbnAzu_HYT7_Ah45s139g",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"lat\": \"19.129387218323\",\r\n    \"lng\": \"12345612312312\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3001/delivery/change-status",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"delivery",
+								"change-status"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User - Add To Cart",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZWMzNzRkNTVkM2Q3ODA2YzkzZjk0NWEiLCJlbWFpbCI6InRlc3RAdGVzdC5jb20iLCJpYXQiOjE1ODk4Njc3MzQsImV4cCI6MTU5NzY0MzczNH0.JKQQB4WrngDdYTQIYY-sEYB4T7eHsuOmyT1iFGZtlU4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://online-foods.herokuapp.com/user/cart/5ec0c81343434c07314cdf67",
+					"protocol": "https",
+					"host": [
+						"online-foods",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"user",
+						"cart",
+						"5ec0c81343434c07314cdf67"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User - Edit Profile",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZWMzNzRkNTVkM2Q3ODA2YzkzZjk0NWEiLCJlbWFpbCI6InRlc3RAdGVzdC5jb20iLCJpYXQiOjE1ODk4Njc3MzQsImV4cCI6MTU5NzY0MzczNH0.JKQQB4WrngDdYTQIYY-sEYB4T7eHsuOmyT1iFGZtlU4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"address\": \"Edapally Cochin, 682024\",\n\t\"phone\": \"985679457\",\n\t\"lat\": \"16.89\",\n\t\"lng\": \"78.60\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://online-foods.herokuapp.com/user/address/",
+					"protocol": "https",
+					"host": [
+						"online-foods",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"user",
+						"address",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User - Edit Cart",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZWMzNzRkNTVkM2Q3ODA2YzkzZjk0NWEiLCJlbWFpbCI6InRlc3RAdGVzdC5jb20iLCJpYXQiOjE1ODk4Njc3MzQsImV4cCI6MTU5NzY0MzczNH0.JKQQB4WrngDdYTQIYY-sEYB4T7eHsuOmyT1iFGZtlU4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://online-foods.herokuapp.com/user/cart/5ec0c80043434c07314cdf66/0",
+					"protocol": "https",
+					"host": [
+						"online-foods",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"user",
+						"cart",
+						"5ec0c80043434c07314cdf66",
+						"0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User - Remove From Cart",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZWMzNzRkNTVkM2Q3ODA2YzkzZjk0NWEiLCJlbWFpbCI6InRlc3RAdGVzdC5jb20iLCJpYXQiOjE1ODk4Njc3MzQsImV4cCI6MTU5NzY0MzczNH0.JKQQB4WrngDdYTQIYY-sEYB4T7eHsuOmyT1iFGZtlU4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://online-foods.herokuapp.com/user/cart/5ec0c80043434c07314cdf66",
+					"protocol": "https",
+					"host": [
+						"online-foods",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"user",
+						"cart",
+						"5ec0c80043434c07314cdf66"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User - Profile",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZmIyODFlMmYyNTkwZjRiNGVkZThmMDEiLCJlbWFpbCI6ImdvMkBnbWFpbC5jb20iLCJ2ZXJpZmllZCI6ZmFsc2UsImlhdCI6MTYwNTkyODExNiwiZXhwIjoxNjEzNzA0MTE2fQ.t6reEnbyvf2jF38F5KuAhsgUxAB4329E8pP15dmr_6w",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/user/profile/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"user",
+						"profile",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User - View Cart",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZWMzNzRkNTVkM2Q3ODA2YzkzZjk0NWEiLCJlbWFpbCI6InRlc3RAdGVzdC5jb20iLCJpYXQiOjE1ODk4Njc3MzQsImV4cCI6MTU5NzY0MzczNH0.JKQQB4WrngDdYTQIYY-sEYB4T7eHsuOmyT1iFGZtlU4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://online-foods.herokuapp.com/user/cart",
+					"protocol": "https",
+					"host": [
+						"online-foods",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"user",
+						"cart"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Foods - View",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{OFA_BASE}}/food/offers",
+					"host": [
+						"{{OFA_BASE}}"
+					],
+					"path": [
+						"food",
+						"offers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Foods - in 30 Min",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://online-foods.herokuapp.com/food/in-30-min",
+					"protocol": "https",
+					"host": [
+						"online-foods",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"food",
+						"in-30-min"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Foods - Top Restaurants",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://online-foods.herokuapp.com/food/top/restaurants",
+					"protocol": "https",
+					"host": [
+						"online-foods",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"food",
+						"top",
+						"restaurants"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Foods - form Specific restaurant",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://online-foods.herokuapp.com/food/restaurant/5ec01a8cc37246066220a635",
+					"protocol": "https",
+					"host": [
+						"online-foods",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"food",
+						"restaurant",
+						"5ec01a8cc37246066220a635"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Foods - Details by ID",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://online-foods.herokuapp.com/food/5ec01c2c6b0ad806dd79c3e1",
+					"protocol": "https",
+					"host": [
+						"online-foods",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"food",
+						"5ec01c2c6b0ad806dd79c3e1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Admin-New-Food",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\":\"Upma with Green Chutny\",\n\t\"description\":\"Great quality of Upma with Green Chutny\",\n  \"category\" :\"break-fast\",\n  \"price\" :\"110\",\n  \"readyTime\":\"30\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://online-foods.herokuapp.com/admin/add-food/5ec01a54c37246066220a633",
+					"protocol": "https",
+					"host": [
+						"online-foods",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"admin",
+						"add-food",
+						"5ec01a54c37246066220a633"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Admin-New-Restaurant",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\":\"Yellow Chilli\",\n  \"foodType\": \"non-veg\",\n  \"pincode\":\"682024\",\n  \"address\":\"Edapally\",\n  \"phone\":\"782227878\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://online-foods.herokuapp.com/admin/add-restaurant",
+					"protocol": "https",
+					"host": [
+						"online-foods",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"admin",
+						"add-restaurant"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Admin-View-All-Restaurants",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://online-foods.herokuapp.com/admin/view-restaurants",
+					"protocol": "https",
+					"host": [
+						"online-foods",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"admin",
+						"view-restaurants"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8000/food/availability/232323",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://online-foods.herokuapp.com/food/availability/400012",
+					"protocol": "https",
+					"host": [
+						"online-foods",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"food",
+						"availability",
+						"400012"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Foods - Search",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://online-foods.herokuapp.com/food/search/5698",
+					"protocol": "https",
+					"host": [
+						"online-foods",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"food",
+						"search",
+						"5698"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User - OTP",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZmI5MjI1NDFkZDk1MjAwMjQ2Zjc1YjQiLCJlbWFpbCI6ImdnNEBjb2RlcmdvZ29pLmNvbSIsInZlcmlmaWVkIjpmYWxzZSwiaWF0IjoxNjA1OTY4NDY4LCJleHAiOjE2MTM3NDQ0Njh9.MjRcmPEfOQ0TE3Vn0yTXnq33E1jZbF9lBQqfxgRHPMI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\": \"gogoi@codergogoi.com\",\n\t\"password\": \"1234567\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://online-foods.herokuapp.com/user/otp",
+					"protocol": "https",
+					"host": [
+						"online-foods",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"user",
+						"otp"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Foods - Create Order",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZjllM2RkY2ZkM2E0MDAwMjRkZTVmMjkiLCJlbWFpbCI6ImdvZ29pQGNvZGVyZ29nb2kuY29tIiwiaWF0IjoxNjA1MjY3MDIyLCJleHAiOjE2MTMwNDMwMjJ9.zPxKu-dIB1kb5-p5SrgJoJtmgIW5rCsKXiVcWafcVMs",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"cart\": [\n        {\n        \"_id\": \"5ec01c2c6b0ad806dd79c3e1\",\n        \"unit\": 2\n     },\n     {\n        \"_id\": \"5ec0c77a43434c07314cdf63\",\n        \"unit\": 3\n     },\n     {\n        \"_id\": \"5ec0c7b943434c07314cdf64\",\n        \"unit\": 1\n     }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/user/create-order",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"user",
+						"create-order"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Foods - View Orders",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZjllM2RkY2ZkM2E0MDAwMjRkZTVmMjkiLCJlbWFpbCI6ImdvZ29pQGNvZGVyZ29nb2kuY29tIiwiaWF0IjoxNjA1MjY3MDIyLCJleHAiOjE2MTMwNDMwMjJ9.zPxKu-dIB1kb5-p5SrgJoJtmgIW5rCsKXiVcWafcVMs",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"cart\": [\n        {\n        \"_id\": \"5ec01c2c6b0ad806dd79c3e1\",\n        \"unit\": 2\n     },\n     {\n        \"_id\": \"5ec0c77a43434c07314cdf63\",\n        \"unit\": 3\n     },\n     {\n        \"_id\": \"5ec0c7b943434c07314cdf64\",\n        \"unit\": 1\n     }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/user/order/7493",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"user",
+						"order",
+						"7493"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User - Verify",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZmI5MjI1NDFkZDk1MjAwMjQ2Zjc1YjQiLCJlbWFpbCI6ImdnNEBjb2RlcmdvZ29pLmNvbSIsInZlcmlmaWVkIjpmYWxzZSwiaWF0IjoxNjA1OTY4NDk3LCJleHAiOjE2MTM3NDQ0OTd9.0WIJWrA0kJ9C5tGkMxKqn3l_57dpWRzD0bPEEWij-tQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"otp\": \"595959\"\n\t\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://online-foods.herokuapp.com/user/verify",
+					"protocol": "https",
+					"host": [
+						"online-foods",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"user",
+						"verify"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZmIzMzc4M2JmMDRhZjBjYzkyMzMyNWMiLCJlbWFpbCI6ImNnQGdtYWlsLmNvbSIsInZlcmlmaWVkIjp0cnVlLCJpYXQiOjE2MTcyNzMxMDQsImV4cCI6MTYyNTA0OTEwNH0.ebQ_A49_ZB1cm8awOJiX5AFITHYXN6xw393SCv7-CUE",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

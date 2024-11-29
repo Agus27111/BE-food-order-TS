@@ -30,11 +30,7 @@ Food Order Monolith adalah aplikasi backend monolitik yang dibangun menggunakan 
 
 3. **Konfigurasi environment** :
 
-   Buat file `.env` di root proyek dengan format seperti berikut:
-
-   DATABASE_URL=your_database_url
-   PORT=your_port
-   JWT_SECRET=your_secret_key
+   Buat file `.env` di root proyek.
 
 4. **Setup Database** :
 5. **Jalankan aplikasi** :
